@@ -1,0 +1,156 @@
+format: ChoreonoidBody
+format_version: 2.0
+angle_unit: degree
+name: "MobileRobot"
+root_link: "Chassis"
+links:
+  -
+    name: "Chassis"
+    translation: [ 12.0723, 1.29635, 0.000130674 ]
+    rotation: [ 0.0319475, -0.0862588, 0.99576, 40.714 ]
+    joint_name: "Chassis"
+    joint_type: free
+    mass: 18
+    center_of_mass: [ -0.08, 0, 0.08 ]
+    inertia: [
+      0.1, 0, 0,
+      0, 0.17, 0,
+      0, 0, 0.22 ]
+    elements:
+      -
+        type: Transform
+        translation: [ -0.1, 0, 0.0975 ]
+        elements:
+          -
+            type: Shape
+            geometry:
+              type: Box
+              size: [ 0.28, 0.2, 0.135 ]
+  -
+    name: "FrontCaster"
+    parent: "Chassis"
+    translation: [ -0.22, 0, 0.02 ]
+    rotation: [ 0, 1, 0, 90 ]
+    joint_name: "FrontCaster"
+    joint_type: revolute
+    joint_axis: [ 0, 0, 1 ]
+    mass: 0.05
+    center_of_mass: [ 0, 0, 0 ]
+    inertia: [
+      0.0001, 0, 0,
+      0, 0.0001, 0,
+      0, 0, 0.0001 ]
+    elements:
+      -
+        type: Shape
+        appearance:
+          material:
+            diffuse: [ 0.3, 0.3, 0.3 ]
+        geometry:
+          type: Cylinder
+          radius: 0.02
+          height: 0.01
+  -
+    name: "RightWheel"
+    parent: "Chassis"
+    translation: [ 0, -0.115, 0.076 ]
+    joint_name: "RightWheel"
+    joint_type: revolute
+    joint_axis: [ 0, 1, 0 ]
+    joint_id: 0
+    mass: 0.8
+    center_of_mass: [ 0, 0, 0 ]
+    inertia: [
+      0.0012, 0, 0,
+      0, 0.0023, 0,
+      0, 0, 0.0012 ]
+    material: Tire
+    elements:
+      - &A0
+        type: Shape
+        appearance:
+          material:
+            diffuse: [ 0.2, 0.2, 0.2 ]
+        geometry:
+          type: Cylinder
+          radius: 0.076
+          height: 0.03
+          division_number: 60
+  -
+    name: "LeftWheel"
+    parent: "Chassis"
+    translation: [ 0, 0.115, 0.076 ]
+    joint_name: "LeftWheel"
+    joint_type: revolute
+    joint_axis: [ 0, 1, 0 ]
+    joint_id: 1
+    mass: 0.8
+    center_of_mass: [ 0, 0, 0 ]
+    inertia: [
+      0.0012, 0, 0,
+      0, 0.0023, 0,
+      0, 0, 0.0012 ]
+    material: Tire
+    elements:
+      - *A0
+  -
+    name: "Pole"
+    parent: "Chassis"
+    translation: [ 0.05, 0, 0.3 ]
+    rotation: [ 1, 0, 0, 90 ]
+    joint_name: "Pole"
+    joint_type: fixed
+    mass: 0.1
+    center_of_mass: [ 0, 0, 0 ]
+    inertia: [
+      0.0001, 0, 0,
+      0, 0.0001, 0,
+      0, 0, 0.0001 ]
+    elements:
+      -
+        type: Transform
+        elements:
+          -
+            type: Shape
+            geometry:
+              type: Cylinder
+              radius: 0.01
+              height: 0.4
+      -
+        type: Transform
+        name: Camera
+        rotation: [ -0.970287525248, -0.171087869746, 0.171087869746, 91.7279410724 ]
+        translation: [ 0.01, 0.2, 0 ]
+        elements:
+          -
+            type: Transform
+            rotation: [ 0.57735026919, 0.57735026919, 0.57735026919, 120 ]
+            elements:
+              -
+                type: Shape
+                appearance:
+                  material:
+                    diffuse: [ 0.2, 0.2, 0.8 ]
+                    specular: [ 0.6, 0.6, 1 ]
+                    specular_exponent: 77.2
+                geometry:
+                  type: Cylinder
+                  radius: 0.02
+                  height: 0.03
+      -
+        type: Camera
+        name: "Camera"
+        translation: [ 0.01, 0.2, 0 ]
+        rotation: [ -0.970288, -0.171088, 0.171088, 91.7279 ]
+        frame_rate: 30
+        optical_frame: gl
+        width: 320
+        height: 240
+        field_of_view: 65
+        near_clip_distance: 0.02
+        far_clip_distance: 200
+        format: COLOR_DEPTH
+        min_distance: 0.1
+        max_distance: 10
+        detection_rate: 1
+        error_deviation: 0

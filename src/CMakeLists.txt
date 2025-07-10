@@ -1,0 +1,2 @@
+choreonoid_add_simple_controller(WheelController wheel_controller.cpp)
+target_link_libraries(WheelController ${roscpp_LIBRARIES})
